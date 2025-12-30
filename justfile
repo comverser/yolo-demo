@@ -1,19 +1,20 @@
 set shell := ["bash", "-c"]
 
-demo_url := "https://github.com/intel-iot-devkit/sample-videos/raw/master/people-detection.mp4"
+preset := "rescue_demo.mp4"
 venv := "source venv/bin/activate &&"
 
-default: demo
+default: preset
 
 setup:
     [ ! -d "venv" ] && python3 -m venv venv || true
-    {{venv}} pip install -q opencv-python ultralytics
+    {{venv}} pip install -q opencv-python ultralytics yt-dlp
 
-demo: setup
-    {{venv}} STREAM_URL="{{demo_url}}" python person_detector.py
+download: setup
+    {{venv}} yt-dlp -f "best[height<=720]" --download-sections "*09:11-12:11" -o "{{preset}}" "https://www.youtube.com/watch?v=IF_JL2LEcFo"
 
-webcam: setup
-    {{venv}} STREAM_URL="0" python person_detector.py
+preset: setup
+    [ ! -f "{{preset}}" ] && just download || true
+    {{venv}} STREAM_URL="{{preset}}" python person_detector.py
 
 stream url: setup
     {{venv}} STREAM_URL="{{url}}" python person_detector.py
