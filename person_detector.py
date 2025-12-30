@@ -3,10 +3,8 @@ import time
 import os
 from ultralytics import YOLO
 
-DEFAULT_URL = "https://github.com/intel-iot-devkit/sample-videos/raw/master/people-detection.mp4"
-
 def get_source():
-    url = os.environ.get("STREAM_URL", DEFAULT_URL)
+    url = os.environ.get("STREAM_URL", "0")
     return int(url) if url.isdigit() else url
 
 def main():

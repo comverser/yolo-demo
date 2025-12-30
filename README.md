@@ -29,10 +29,7 @@ Press `q` to quit.
 
 ## Demo Video
 
-The preset demo uses rescue drone footage from YouTube:
-https://www.youtube.com/watch?v=IF_JL2LEcFo
-
-Default fallback video: https://github.com/intel-iot-devkit/sample-videos/raw/master/people-detection.mp4
+Rescue drone footage: https://www.youtube.com/watch?v=IF_JL2LEcFo
 
 ## Requirements
 
